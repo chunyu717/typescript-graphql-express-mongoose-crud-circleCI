@@ -1,60 +1,53 @@
-TypeScript part 
-=======================================================================================
-1- 初始化 Node.js
-    1. 建立 Node.js project package.json.
+# Env Setting (Nodejs, TypeScript, mongoose, MongoDB) 
+---
+### Initial Node.js
+    ceate Node.js project and package.json.
     $ npm init -y
-    2. 安裝 TypeScript
+    install TypeScript
     $ npm install typescript — save-dev
-    3. 加入 node.d.ts
+    add node.d.ts (typescript Declaration Files)
     $ npm install @types/node — save-dev
-    4. 加入 TypeScript 的設定檔案 tsconfig.json
+    add TypeScript tsconfig.json
     $ npx tsc — init
 
-2- 建立開發環境 Live Compile + Run
-    1. 加入實時編譯模組 ts-node
+### Setting for Live Compile + Run
+    add realtime compile module ts-node
     $ npm install ts-node --save-dev
-    2. 加入 nodemon ，當任何檔案發生改變，觸發執行 ts-node
-    npm install nodemon --save-dev
-    3. 將 script 設定入加 package.json
+    Add nodemon, while file changes it will triggle ts-node
+    $ npm install nodemon --save-dev
+    add the script to  package.json , command to start develop  $npm run start 
     "scripts": {
         "start": "npm run build:live",
         "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./index.ts",
         "build": "tsc index.ts"
     },
 
-下載範例 index.ts, 通過 npm run start 進行開發:
+    $ npm run build     // tsc is compile tool compile .ts to .js 
+    nodemon monitor file change and triggle command ts-node
+    ts-node compile index.ts into index.js by tsconfig.json setting
 
-3- Production 編譯 js
-    tsc 是編譯 .ts 到 .js 的編譯工具，作用編譯 production 的靜態 Javascript 文檔：
-    $ npm run build
-    Remark
-    nodemon 用來監察檔案的改變，重新觸發 command ts-node
-    ts-node 通過 tsconfig.json 的設定，對 index.ts 進行自動編譯成為 js
-
-
-monngoDB part 
-=======================================================================================
+### Setting monngoDB  
 $ npm install --save mongoose
 
-先建立 Schema ,  包成 model 後 export ；  Schema 定義型態， Schema 可以定義自己的 method. 
-Schema 有點像是 java hibernate 的 entity   ；  model 像是 value object (VO)
+### deploy mongodb docker.
+$ docker run --name mongodb -v $(pwd)/data:/data/db -d -p 27017:27017 --rm mongo
 
-# moogose connect 依照 warning 的提醒加了一些 attribute. 
-mongoose.connect('mongodb://127.0.0.1/todo', { useUnifiedTopology: true, useNewUrlParser: true });
+## Project brief 
+---
+1. Edit Schema (Schema defind the type and customized  method.)   => make it be model then export ；  
+2. Schema like  java hibernate 的 entity; model like value object (VO)
+3. CRUD with moongoose 
 
-# Parse request body 
-const bodyParser = require('body-parser')
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
+### moogose connect ( I added some atrribute depend on waning msg. )
+    mongoose.connect('mongodb://127.0.0.1/todo', { useUnifiedTopology: true, useNewUrlParser: true });
 
-# 記得 request 要加 
---header "Content-Type: application/json" 
-req.body 才取得東西
+### Parse request body 
+    const bodyParser = require('body-parser')
+    app.use(bodyParser.urlencoded({extended: false}))
+    app.use(bodyParser.json())
 
-req.query 是取 parameter .
+### request header must add :  Content-Type: application/json
+"req.body" to get reques body
+"req.query" to get  parameter .
 
-
-
-deploy mongodb docker.
-docker run --name mongodb -v $(pwd)/data:/data/db -d -p 27017:27017 --rm mongo
 

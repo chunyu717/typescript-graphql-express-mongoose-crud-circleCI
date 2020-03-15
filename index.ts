@@ -9,19 +9,8 @@ app.use(bodyParser.json())
 const cors = require('cors')
 app.use(cors())
 
-// 載入 jwt 函式庫協助處理建立/驗證 token
-// const jwt = require('jsonwebtoken')
-// var morgan = require('morgan')
-// app.use(morgan('dev'))
-
 //ssl & https 
 var http = require('http');
-// const http = require('https');
-// app.use(express.static('static'));
-// const fs = require('fs');
-// const privateKey  = fs.readFileSync(__dirname + '/ssl/private.key');
-// const certificate = fs.readFileSync(__dirname + '/ssl/certificate.crt');
-// const credentials = { key: privateKey, cert: certificate };
 const server = http.createServer( /*credentials,*/ app);
 
 // MongoDB
@@ -47,18 +36,17 @@ app.post( "/create", cors(), ( req: any, res: any) => {
         size: size,
         name: name
       });
-      // 直接存取 elephant 這個 instance 的 type
-      // console.log(elephant.category); // "on land"
-      // 透過在 Model 中定義的 instance methods 取得 elephant 的 category
-      // elephant.getCategory(); // "This animal is belongs to on land"
+
+      // console.log(elephant.category); //  Direct access  the type of elephant instance.  output => "on land"
+      // elephant.getCategory(); //access elephant.category by method.  output => "This animal is belongs to on land"
       
-      // 儲存 document
+      // store document
       elephant.save((err: any, elephant: any) => {
         if (err) {
           return console.error(err);
         }
         console.log('document saved');
-        db.close(); // 結束與 database 的連線
+        //db.close(); // this close the connection with db. if close you need to reconnect it
       });
       res.send( "Save OK!" );
 
