@@ -17,7 +17,7 @@ const server = http.createServer( /*credentials,*/ app);
 //Import the mongoose module
 const mongoose = require('mongoose');
 //Set up default mongoose connection
-mongoose.connect('mongodb://192.168.157.129/todo', { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect('mongodb://192.168.157.131/todo', { useUnifiedTopology: true, useNewUrlParser: true });
 // Get Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
 //Get the default connection
@@ -56,11 +56,11 @@ app.post( "/create", cors(), ( req: any, res: any) => {
         category: req.body.category
     }, function(err: any, docs: any) {
         console.log('docs' , docs)
-        if (docs.category === req.body.category) {
+        if ( docs && ( docs.category === req.body.category )) {
             res.send(docs);
             console.log(docs.category);
         } else {
-            console.log(docs.category);
+            //console.log(docs.category);
             res.send('cant find');
         }
     });
@@ -71,8 +71,9 @@ app.post( "/update", cors(), ( req: any, res: any) => {
     Animal.update({
         category: category
     }, { category: category, mass: mass,size: size, name: name},  function(err: any) {
-        if(!err)
+        if(!err) {
             res.send('updated');
+        }
     });
 
 } );

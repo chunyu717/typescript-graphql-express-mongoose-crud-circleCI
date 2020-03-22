@@ -1,6 +1,6 @@
 # Env Setting (Nodejs, TypeScript, mongoose, MongoDB) 
 ---
-### Initial Node.js
+### Initial Node.js for Typescript
     ceate Node.js project and package.json.
     $ npm init -y
     install TypeScript
