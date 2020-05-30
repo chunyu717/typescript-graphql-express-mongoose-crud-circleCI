@@ -15,12 +15,12 @@
     $ npm install ts-node --save-dev
     Add nodemon, while file changes it will triggle ts-node
     $ npm install nodemon --save-dev
-    add the script to  package.json , command to start develop  $npm run start 
-    "scripts": {
-        "start": "npm run build:live",
-        "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./index.ts",
-        "build": "tsc index.ts"
-    },
+        add the script to  package.json , command to start develop  $npm run start 
+        "scripts": {
+            "start": "npm run build:live",
+            "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./index.ts",
+            "build": "tsc index.ts"
+        },
 
     $ npm run build     // tsc is compile tool compile .ts to .js 
     nodemon monitor file change and triggle command ts-node
