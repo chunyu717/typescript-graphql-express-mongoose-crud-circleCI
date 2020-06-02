@@ -32,6 +32,22 @@ $ npm install --save mongoose
 ### deploy mongodb docker.
 $ docker run --name mongodb -v $(pwd)/data:/data/db -d -p 27017:27017 --rm mongo
 
+### node unit test
+$ npm install jest --save-dev
+
+scripts: {
+    "test": "jest"
+}
+
+$ npm run test 
+
+
+
+
+
+
+
+
 ## Project brief 
 ---
 1. Edit Schema (Schema defind the type and customized  method.)   => make it be model then export ；  
