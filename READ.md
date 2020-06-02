@@ -44,10 +44,6 @@ $ npm run test
 
 
 
-
-
-
-
 ## Project brief 
 ---
 1. Edit Schema (Schema defind the type and customized  method.)   => make it be model then export ；  
@@ -66,4 +62,7 @@ $ npm run test
 "req.body" to get reques body
 "req.query" to get  parameter .
 
+
+
+pr test
 
