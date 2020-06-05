@@ -14,7 +14,7 @@ jobs:
             - run: npm test
   deploy: #  name for job
     docker:
-      - image: circleci/golang:1.13-alpine #docker:17.05.0-ce-git #circleci/node
+      - image: docker:19.03.11-ce-git #circleci/node
     working_directory: ~/circleci-demo-workflows
     environment:
       FULL_IMAGE_NAME: "sample:mongoosecrud" 
