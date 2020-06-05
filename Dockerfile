@@ -10,6 +10,6 @@ RUN npm install pm2 -g            # 全局安装 pm2 # 曝露容器端口
 COPY . /app
 RUN npm run build
 
-EXPOSE 80                       
+EXPOSE 8080                       
 CMD ["pm2-runtime", "./index.js"]   # 执行启动命令
 
