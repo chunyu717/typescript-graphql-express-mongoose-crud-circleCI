@@ -42,7 +42,8 @@ scripts: {
 $ npm run test 
 
 
-
+### CircleCI
+.circleci/config.yml  is  auto general by CircleCI. app.
 
 ## Project brief 
 ---
@@ -64,6 +65,5 @@ $ npm run test
 
 
 
-pr test
-pr test2
+
 

@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  build-and-test:
+  build-and-test: # name for job
     executor:
       name: node/default
     steps:
@@ -12,7 +12,43 @@ jobs:
             - run: npm install
             - run: npm build
             - run: npm test
+  deploy: #  name for job
+    docker:
+      - image: circleci/node
+    working_directory: ~/circleci-demo-workflows
+    environment:
+      FULL_IMAGE_NAME: "sample:mongoosegrud" 
+    steps:
+      - checkout
+      - run:
+          name: Build image
+          command: |
+            docker build -t $FULL_IMAGE_NAME .
+            mkdir docker-image
+            docker save -o docker-image/image.tar $FULL_IMAGE_NAME
+      - run:
+          name: Test image
+          command: |
+            docker run -d -p 8080:80 --name built-image $FULL_IMAGE_NAME
+            sleep 10
+            docker run --network container:built-image byrnedo/alpine-curl -I --retry 10 --retry-connrefused http://localhost
 workflows:
-    build-and-test:
+    build-and-test: # name for workflows
       jobs:
         - build-and-test
+        - deploy:
+            requires:
+              - build-and-test
+
+#production:
+#  branch: master # 當修改合進master時即會自動部署
+#  - run:
+#    name: Deploy Over SSH
+#    command: |
+#      ssh $SSH_USER@$SSH_HOST "<remote deploy command>"
+
+#production:
+#  branch: master # 當修改合進master時即會自動部署
+#  commands:
+#    - eb use env-prod --profile default 
+#    - eb deploy --profile default
