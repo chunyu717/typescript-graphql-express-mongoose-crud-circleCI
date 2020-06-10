@@ -21,6 +21,9 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+      - add_ssh_keys:
+        fingerprints:
+          - "e2:6b:b4:da:35:1c:d8:da:ee:e4:b7:a9:79:51:08:77"
       - run:
           name: Build image
           command: |
