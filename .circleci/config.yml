@@ -38,6 +38,11 @@ jobs:
           command: |
             echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
             docker push $FULL_IMAGE_NAME
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh $SSH_USER@$SSH_HOST "docker pull $FULL_IMAGE_NAME"
+    
 workflows:
     build-and-test: # name for workflows
       jobs:
