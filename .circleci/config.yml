@@ -23,7 +23,7 @@ jobs:
       - setup_remote_docker
       - add_ssh_keys:
           fingerprints:
-            - "e2:6b:b4:da:35:1c:d8:da:ee:e4:b7:a9:79:51:08:77"
+            - "1e:f1:e8:f4:54:c5:f0:a5:bf:ad:45:81:9c:e8:dd:0c"
       #- run: ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
       #- run: echo '220.135.156.91 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPsIqQc8jaWQPTFu+EXas9M+Jvh3QBikc0znN9SIGDcdqCLTwfQt+kO3O0YkFp1HAxJ56ZKg+0UvlnCscOQwyWM=' >> ~/.ssh/known_hosts
       - run:
