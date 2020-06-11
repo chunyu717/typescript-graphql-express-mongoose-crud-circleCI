@@ -17,7 +17,7 @@ const server = http.createServer( /*credentials,*/ app);
 //Import the mongoose module
 const mongoose = require('mongoose');
 //Set up default mongoose connection
-mongoose.connect('mongodb://192.168.157.131/todo', { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect('mongodb://' +  process.env.DB_HOST + '/todo', { useUnifiedTopology: true, useNewUrlParser: true });
 // Get Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
 //Get the default connection

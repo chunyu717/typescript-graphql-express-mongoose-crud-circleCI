@@ -9,7 +9,6 @@
     $ npm install @types/node — save-dev
     add TypeScript tsconfig.json
     $ npx tsc — init
-
 ### Setting for Live Compile + Run
     add realtime compile module ts-node
     $ npm install ts-node --save-dev
@@ -23,27 +22,25 @@
         },
 
     $ npm run build     // tsc is compile tool compile .ts to .js 
-    nodemon monitor file change and triggle command ts-node
+    nodemon monitor file change and triggle command ts-nod e
     ts-node compile index.ts into index.js by tsconfig.json setting
 
 ### Setting monngoDB  
-$ npm install --save mongoose
+    $ npm install --save mongoose
 
 ### deploy mongodb docker.
-$ docker run --name mongodb -v $(pwd)/data:/data/db -d -p 27017:27017 --rm mongo
+    $ docker run --name mongodb -v $(pwd)/data:/data/db -d -p 27017:27017 mongo
+    stop then delete
+    $ docker run --name mongodb -v $(pwd)/data:/data/db -d -p 27017:27017 --rm mongo
 
 ### node unit test
-$ npm install jest --save-dev
-
-scripts: {
-    "test": "jest"
-}
-
-$ npm run test 
-
-
-### CircleCI
-.circleci/config.yml  is  auto general by CircleCI. app.
+    $ npm install jest --save-dev
+    
+    scripts: {
+        "test": "jest"
+    }
+    
+    $ npm run test 
 
 ## Project brief 
 ---
@@ -60,20 +57,28 @@ $ npm run test
     app.use(bodyParser.json())
 
 ### request header must add :  Content-Type: application/json
-"req.body" to get reques body
-"req.query" to get  parameter .
+    "req.body" to get reques body
+    "req.query" to get  parameter .
+
+---
+
+### CircleCI :
+.circleci/config.yml  is  auto general by CircleCI. app.
+
+#### How to fix docker: Got permission denied issue
+    $ sudo groupadd docker
+    Add your user to the docker group.
+    $ sudo usermod -aG docker $USER
+    Run the following command or Logout and login again and run (that doesn't work you may need to reboot your machine first)
+    $ newgrp docker
+    change socket without enough permission for the 'docker' group.
+    $ sudo chmod 666 /var/run/docker.sock
+    Check if docker can be run without root
+    $ docker run hello-world
+
+#### fix ssh access step: 
+    jerry@ubuntu:~$ ssh-keygen -E md5 -lf ~/.ssh/id_rsa
+    2048 MD5:1e:f1:e8:f4:54:c5:f0:a5:bf:ad:45:81:9c:e8:dd:0c jerry@ubuntu (RSA)
+    cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys
 
 
-
-
-
-How to fix docker: Got permission denied issue
-$ sudo groupadd docker
-Add your user to the docker group.
-$ sudo usermod -aG docker $USER
-Run the following command or Logout and login again and run (that doesn't work you may need to reboot your machine first)
-$ newgrp docker
-change socket without enough permission for the 'docker' group.
-$ sudo chmod 666 /var/run/docker.sock
-Check if docker can be run without root
-$ docker run hello-world

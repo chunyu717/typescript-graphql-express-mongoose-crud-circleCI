@@ -58,13 +58,6 @@ workflows:
 
 #production:
 #  branch: master # 當修改合進master時即會自動部署
-#  - run:
-#    name: Deploy Over SSH
-#    command: |
-#      ssh $SSH_USER@$SSH_HOST "<remote deploy command>"
-
-#production:
-#  branch: master # 當修改合進master時即會自動部署
 #  commands:
 #    - eb use env-prod --profile default 
 #    - eb deploy --profile default
