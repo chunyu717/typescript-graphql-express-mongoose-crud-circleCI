@@ -67,3 +67,13 @@ $ npm run test
 
 
 
+How to fix docker: Got permission denied issue
+$ sudo groupadd docker
+Add your user to the docker group.
+$ sudo usermod -aG docker $USER
+Run the following command or Logout and login again and run (that doesn't work you may need to reboot your machine first)
+$ newgrp docker
+change socket without enough permission for the 'docker' group.
+$ sudo chmod 666 /var/run/docker.sock
+Check if docker can be run without root
+$ docker run hello-world
