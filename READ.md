@@ -81,4 +81,9 @@
     2048 MD5:1e:f1:e8:f4:54:c5:f0:a5:bf:ad:45:81:9c:e8:dd:0c jerry@ubuntu (RSA)
     cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys
 
-
+###  fix  Permission Denied “exec entrypoint.sh”
+sudo snap remove --purge docker
+sudo apt remove docker
+sudo apt remove docker-compose
+sudo apt remove docker.io
+sudo snap install docker

@@ -45,6 +45,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 var cors = require('cors');
 app.use(cors());
+require('dotenv').config();
 //ssl & https 
 var http = require('http');
 var server = http.createServer(/*credentials,*/ app);
@@ -52,7 +53,7 @@ var server = http.createServer(/*credentials,*/ app);
 //Import the mongoose module
 var mongoose = require('mongoose');
 //Set up default mongoose connection
-mongoose.connect('mongodb://' + config.DB_HOST + '/todo', { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect('mongodb://' + process.env.DB_HOST + '/todo', { useUnifiedTopology: true, useNewUrlParser: true });
 // Get Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
 //Get the default connection
@@ -196,5 +197,6 @@ app.post("/delete", cors(), function (req, res) {
     });
 });
 server.listen(config.APP_PORT, "0.0.0.0", function () {
+    console.log('process.env', process.env);
     console.log('server run at ' + config.APP_HOST + ':' + config.APP_PORT);
 });
