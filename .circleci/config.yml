@@ -25,7 +25,6 @@ jobs:
           fingerprints:
             - "1e:f1:e8:f4:54:c5:f0:a5:bf:ad:45:81:9c:e8:dd:0c"
       #- run: ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
-      #- run: echo '220.135.156.91 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPsIqQc8jaWQPTFu+EXas9M+Jvh3QBikc0znN9SIGDcdqCLTwfQt+kO3O0YkFp1HAxJ56ZKg+0UvlnCscOQwyWM=' >> ~/.ssh/known_hosts
       - run:
           name: Build image
           command: |
@@ -46,7 +45,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "docker pull $FULL_IMAGE_NAME;  docker run -e DB_HOST=192.168.66.129 --name moongose -d -p 8888:8888 $FULL_IMAGE_NAME; "
+            ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "docker pull $FULL_IMAGE_NAME; echo "rm container"; docker rm -f moongose; echo "run container"; docker run -e DB_HOST=192.168.66.129 --name moongose -d -p 8888:8888 $FULL_IMAGE_NAME; "
       #docker run --name mongodb -v /home/jerry/mongodb/data:/data/db -d -p 27017:27017 mongo;
     
 workflows:
@@ -56,9 +55,7 @@ workflows:
         - deploy:
             requires:
               - build-and-test
+            #filters:
+            #  branches:
+            #    only: master # 當修改合進master時才會自動部署
 
-#production:
-#  branch: master # 當修改合進master時即會自動部署
-#  commands:
-#    - eb use env-prod --profile default 
-#    - eb deploy --profile default
