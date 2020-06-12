@@ -10,8 +10,8 @@ RUN npm install pm2 -g            # 全局安装 pm2 # 曝露容器端口
 COPY . /app
 RUN npm run build
 
-ENV DB_HOST=192.168.66.129
+#ENV DB_HOST=192.168.66.129
 
-EXPOSE 8080                       
+EXPOSE 8888                       
 CMD ["pm2-runtime", "./index.js"]   # 执行启动命令
 

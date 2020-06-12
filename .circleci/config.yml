@@ -35,9 +35,9 @@ jobs:
       - run:
           name: Test image
           command: |
-            docker run -d -p 8080:8080 --name built-image $FULL_IMAGE_NAME
+            docker run -d -p 8888:8888 --name built-image $FULL_IMAGE_NAME
             sleep 10
-            docker run --network container:built-image byrnedo/alpine-curl -I --retry 10 --retry-connrefused http://localhost:8080
+            docker run --network container:built-image byrnedo/alpine-curl -I --retry 10 --retry-connrefused http://localhost:8888
       - run:
           name: Push image
           command: |
@@ -46,7 +46,8 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "docker pull $FULL_IMAGE_NAME"
+            ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "docker pull $FULL_IMAGE_NAME;  docker run -e DB_HOST=192.168.66.129 --name moongose -d -p 8888:8888 $FULL_IMAGE_NAME; "
+      #docker run --name mongodb -v /home/jerry/mongodb/data:/data/db -d -p 27017:27017 mongo;
     
 workflows:
     build-and-test: # name for workflows

@@ -183,6 +183,6 @@ app.post( "/delete", cors(), ( req: any, res: any) => {
 } );
 
 server.listen( config.APP_PORT,"0.0.0.0",function(){
-    console.log('process.env', process.env);
+    //console.log('process.env', process.env);
     console.log('server run at ' + config.APP_HOST  +  ':' + config.APP_PORT );
 });
