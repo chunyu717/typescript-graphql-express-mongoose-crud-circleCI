@@ -84,8 +84,14 @@ $docker run --name mongoosecrud -d -p 27017:27017 kingbike/mongoosecrud -e DB_HO
     cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys
 
 ###  fix :  /bin/bash: /usr/local/bin/docker-entrypoint.sh: Permission denied
-sudo snap remove --purge docker
-sudo apt remove docker
-sudo apt remove docker-compose
-sudo apt remove docker.io
-sudo snap install docker
+    sudo snap remove --purge docker
+    sudo apt remove docker
+    sudo apt remove docker-compose
+    sudo apt remove docker.io
+    sudo snap install docker
+
+
+### resources :
+https://www.thepolyglotdeveloper.com/2019/02/developing-graphql-api-nodejs-mongodb/
+https://www.youtube.com/watch?v=0bYf1wcOK9o&feature=emb_title
+http://crowdforthink.com/blogs/a-simple-crud-app-using-graphql-nodejs-and-mongodb?fbclid=IwAR2WHJz4nVHKk2jvCLo1rxTrbP73VWxMI4_yok-uUiM-41_i9igqii1h-Xw
