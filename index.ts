@@ -28,7 +28,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const Animal = require('./models/Animal');
 
-//GraphQL 
+//GraphQL start
 mongoose.set('useFindAndModify', false);
 const ExpressGraphQL = require("express-graphql");
 const {
@@ -91,15 +91,13 @@ const schema = new GraphQLSchema({
                     newCategory: { type: GraphQLNonNull(GraphQLString) }
                 },
                 resolve: async (root: any, args: any, context: any, info: any) => {
-                    
                     const uAuthor = await Animal.findOneAndUpdate(
                         {name: args.name}, { category: args.newCategory }, {new: true}, (err: any, res: any) => {
                             if (err) {
                                 console.log("Something wrong when updating data!");
                             }
                             console.log(res) ; //console.log( typeof(res)) ; //object
-                            
-                            //搞好久 不能直接 return 外面要一個變數接完再 return ;
+                            //不能直接 return 外面要一個變數接完再 return ;
                             return res;
                             //return Animal.findOne({ name: args.name});
                         }
@@ -115,12 +113,9 @@ app.use("/graphql", ExpressGraphQL({
     schema: schema,
     graphiql: true
 }));
+//GraphQL end
 
-
-
-
-
-app.post( "/create", cors(), ( req: any, res: any) => {
+app.post( "/api/create", cors(), ( req: any, res: any) => {
     console.log('/create')
     const { category, mass, size, name } = req.body
       const elephant = new Animal({
@@ -144,7 +139,7 @@ app.post( "/create", cors(), ( req: any, res: any) => {
       res.send( "Save OK!" );
 
   })
-  app.post( "/read", cors(), ( req: any, res: any) => {
+  app.post( "/api/read", cors(), ( req: any, res: any) => {
     Animal.findOne({
         category: req.body.category
     }, function(err: any, docs: any) {
@@ -159,7 +154,7 @@ app.post( "/create", cors(), ( req: any, res: any) => {
     });
 } );
 
-app.post( "/update", cors(), ( req: any, res: any) => {
+app.post( "/api/update", cors(), ( req: any, res: any) => {
     const { category, mass, size, name } = req.body
     Animal.update({
         category: category
@@ -171,7 +166,7 @@ app.post( "/update", cors(), ( req: any, res: any) => {
 
 } );
 
-app.post( "/delete", cors(), ( req: any, res: any) => {
+app.post( "/api/delete", cors(), ( req: any, res: any) => {
     const { category, mass, size, name } = req.body
     Animal.remove({
         category: category

@@ -60,11 +60,17 @@
     "req.body" to get reques body
     "req.query" to get  parameter .
 
+
+### resources :
+https://www.thepolyglotdeveloper.com/2019/02/developing-graphql-api-nodejs-mongodb/
+
+https://www.youtube.com/watch?v=0bYf1wcOK9o&feature=emb_title
+
+http://crowdforthink.com/blogs/a-simple-crud-app-using-graphql-nodejs-and-mongodb?fbclid=IwAR2WHJz4nVHKk2jvCLo1rxTrbP73VWxMI4_yok-uUiM-41_i9igqii1h-Xw
+
 ---
 
-### CircleCI :
-.circleci/config.yml  is  auto general by CircleCI. app.
-
+# Run app in container
 $docker run --name mongoosecrud -d -p 27017:27017 kingbike/mongoosecrud -e DB_HOST=192.168.157.131
 
 #### How to fix docker: Got permission denied issue
@@ -77,6 +83,11 @@ $docker run --name mongoosecrud -d -p 27017:27017 kingbike/mongoosecrud -e DB_HO
     $ sudo chmod 666 /var/run/docker.sock
     Check if docker can be run without root
     $ docker run hello-world
+
+---
+# CircleCI :
+.circleci/config.yml  is  auto general by CircleCI. app.
+
 
 #### fix ssh access step: 
     jerry@ubuntu:~$ ssh-keygen -E md5 -lf ~/.ssh/id_rsa
@@ -91,7 +102,4 @@ $docker run --name mongoosecrud -d -p 27017:27017 kingbike/mongoosecrud -e DB_HO
     sudo snap install docker
 
 
-### resources :
-https://www.thepolyglotdeveloper.com/2019/02/developing-graphql-api-nodejs-mongodb/
-https://www.youtube.com/watch?v=0bYf1wcOK9o&feature=emb_title
-http://crowdforthink.com/blogs/a-simple-crud-app-using-graphql-nodejs-and-mongodb?fbclid=IwAR2WHJz4nVHKk2jvCLo1rxTrbP73VWxMI4_yok-uUiM-41_i9igqii1h-Xw
+

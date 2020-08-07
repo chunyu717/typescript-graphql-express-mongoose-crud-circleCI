@@ -25,7 +25,7 @@ jobs:
           fingerprints:
             - "1e:f1:e8:f4:54:c5:f0:a5:bf:ad:45:81:9c:e8:dd:0c"
       #- run: ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
-      - run:
+      - run:  # build image with ~/Dockerfile
           name: Build image
           command: |
             docker build -t $FULL_IMAGE_NAME .
@@ -46,7 +46,6 @@ jobs:
           name: Deploy Over SSH
           command: |
             ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "docker pull $FULL_IMAGE_NAME; echo "rm container"; docker rm -f moongose; echo "run container"; docker run -e DB_HOST=192.168.66.129 --name moongose -d -p 8888:8888 $FULL_IMAGE_NAME; "
-      #docker run --name mongodb -v /home/jerry/mongodb/data:/data/db -d -p 27017:27017 mongo;
     
 workflows:
     build-and-test: # name for workflows
