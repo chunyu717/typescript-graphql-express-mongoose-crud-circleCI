@@ -45,7 +45,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "docker pull $FULL_IMAGE_NAME; echo "rm container"; docker rm -f moongose; echo "run container"; docker run -e DB_HOST=192.168.66.129 --name moongose -d -p 8888:8888 $FULL_IMAGE_NAME; "
+            ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "docker pull $FULL_IMAGE_NAME; echo "rm container"; docker rm -f moongose; echo "run container"; docker run -e DB_HOST=192.168.66.130 --name moongose -d -p 8888:8888 $FULL_IMAGE_NAME; "
     
 workflows:
     build-and-test: # name for workflows
