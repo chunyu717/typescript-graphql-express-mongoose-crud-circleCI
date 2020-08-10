@@ -23,7 +23,7 @@ jobs:
       - setup_remote_docker
       - add_ssh_keys:
           fingerprints:
-            - "1e:f1:e8:f4:54:c5:f0:a5:bf:ad:45:81:9c:e8:dd:0c"
+            - $SSH_KEY
       #- run: ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
       - run:  # build image with ~/Dockerfile
           name: Build image
