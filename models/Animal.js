@@ -31,5 +31,5 @@ AnimalSchema.methods.getCategory = function() {
 // });
 
 // Compile Schema will export Model，you can use the Model to create and store document
-//this will create 'animals' collection in mongo.
+// this will create 'animals' collection in mongo.
 module.exports = mongoose.model('Animal', AnimalSchema);
