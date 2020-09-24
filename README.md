@@ -4,11 +4,11 @@
     ceate Node.js project and package.json.
     $ npm init -y
     install TypeScript
-    $ npm install typescript — save-dev
+    $ npm install typescript --save-dev
     add node.d.ts (typescript Declaration Files)
-    $ npm install @types/node — save-dev
+    $ npm install @types/node --save-dev
     add TypeScript tsconfig.json
-    $ npx tsc — init
+    $ npx tsc --init
 ### Setting for Live Compile + Run
     add realtime compile module ts-node
     $ npm install ts-node --save-dev

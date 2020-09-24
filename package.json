@@ -22,7 +22,7 @@
     "graphql": "^15.0.0",
     "mongoose": "^5.8.11",
     "save-dev": "0.0.1-security",
-    "typescript": "^3.7.5"
+    "typescript": "^3.9.7"
   },
   "devDependencies": {
     "jest": "^26.0.1",

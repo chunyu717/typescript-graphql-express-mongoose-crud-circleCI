@@ -80,7 +80,6 @@ const schema = new GraphQLSchema({
                 },
                 resolve: (root: any, args: any, context: any, info: any) => {
                     var animal = new Animal(args);
-                    //animal.save().then( (respp: any) => { console.log(  typeof(respp) )})  ; //object
                     return animal.save();
                 }
             },
@@ -96,10 +95,8 @@ const schema = new GraphQLSchema({
                             if (err) {
                                 console.log("Something wrong when updating data!");
                             }
-                            console.log(res) ; //console.log( typeof(res)) ; //object
-                            //不能直接 return 外面要一個變數接完再 return ;
+                            console.log(res) ;
                             return res;
-                            //return Animal.findOne({ name: args.name});
                         }
                     );
                     return uAuthor;
@@ -125,9 +122,6 @@ app.post( "/api/create", cors(), ( req: any, res: any) => {
         name: name
       });
 
-      // console.log(elephant.category); //  Direct access  the type of elephant instance.  output => "on land"
-      // elephant.getCategory(); //access elephant.category by method.  output => "This animal is belongs to on land"
-      
       // store document
       elephant.save((err: any, elephant: any) => {
         if (err) {
@@ -138,8 +132,9 @@ app.post( "/api/create", cors(), ( req: any, res: any) => {
       });
       res.send( "Save OK!" );
 
-  })
-  app.post( "/api/read", cors(), ( req: any, res: any) => {
+});
+
+app.post( "/api/read", cors(), ( req: any, res: any) => {
     Animal.findOne({
         category: req.body.category
     }, function(err: any, docs: any) {
@@ -163,7 +158,6 @@ app.post( "/api/update", cors(), ( req: any, res: any) => {
             res.send('updated');
         }
     });
-
 } );
 
 app.post( "/api/delete", cors(), ( req: any, res: any) => {
@@ -174,7 +168,6 @@ app.post( "/api/delete", cors(), ( req: any, res: any) => {
         if(!err)
             res.send('removed');
     });
-
 } );
 
 server.listen( config.APP_PORT,"0.0.0.0",function(){
