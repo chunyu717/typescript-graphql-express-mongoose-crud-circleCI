@@ -90,9 +90,17 @@ $docker run --name mongoosecrud -d -p 27017:27017 kingbike/mongoosecrud -e DB_HO
 
 
 #### fix ssh access step: 
+    $ ssh-keygen -m PEM -t rsa -C "kc109763@gmail.com"
     jerry@ubuntu:~$ ssh-keygen -E md5 -lf ~/.ssh/id_rsa
     2048 MD5:1e:f1:e8:f4:54:c5:f0:a5:bf:ad:45:81:9c:e8:dd:0c jerry@ubuntu (RSA)
     cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+    
+    cat ~/.ssh/id_rsa  =>  past into circleci ssh_key 
+
+#### add general user to docker permission
+    $ sudo groupadd docker
+    $ sudo usermod -aG docker ${USER}
+    $ sudo chmod 666 /var/run/docker.sock
 
 ###  fix :  /bin/bash: /usr/local/bin/docker-entrypoint.sh: Permission denied
     sudo snap remove --purge docker
