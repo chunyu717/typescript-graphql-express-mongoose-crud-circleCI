@@ -1,4 +1,4 @@
-# Env Setting (Nodejs, TypeScript, mongoose, MongoDB) 
+# Env Setting (Nodejs, TypeScript, mongoose, MongoDB, CircleCI, docker) 
 ---
 ### Initial Node.js for Typescript
     ceate Node.js project and package.json.
@@ -92,7 +92,7 @@ $docker run --name mongoosecrud -d -p 27017:27017 kingbike/mongoosecrud -e DB_HO
 #### fix ssh access step: 
     $ ssh-keygen -m PEM -t rsa -C "kc109763@gmail.com"
     jerry@ubuntu:~$ ssh-keygen -E md5 -lf ~/.ssh/id_rsa
-    2048 MD5:1e:f1:e8:f4:54:c5:f0:a5:bf:ad:45:81:9c:e8:dd:0c jerry@ubuntu (RSA)
+    2048 MD5:xx:xx:xx:xx jerry@ubuntu (RSA)
     cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
     
     cat ~/.ssh/id_rsa  =>  past into circleci ssh_key 
