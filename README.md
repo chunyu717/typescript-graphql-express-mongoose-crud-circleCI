@@ -90,7 +90,7 @@ $docker run --name mongoosecrud -d -p 27017:27017 kingbike/mongoosecrud -e DB_HO
 
 
 #### fix ssh access step: 
-    $ ssh-keygen -m PEM -t rsa -C "kc109763@gmail.com"
+    $ ssh-keygen -m PEM -t rsa -C "kcxxxxxx@gmail.com"
     jerry@ubuntu:~$ ssh-keygen -E md5 -lf ~/.ssh/id_rsa
     2048 MD5:xx:xx:xx:xx jerry@ubuntu (RSA)
     cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
