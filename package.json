@@ -20,7 +20,7 @@
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^15.0.0",
-    "mongoose": "^5.8.11",
+    "mongoose": "^5.13.15",
     "save-dev": "0.0.1-security",
     "typescript": "^3.9.7"
   },
